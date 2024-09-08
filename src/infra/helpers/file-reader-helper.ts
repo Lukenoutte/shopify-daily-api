@@ -7,13 +7,14 @@ export default class FileReaderHelper implements IFileReaderHelper {
     return path.join(__dirname, '../utils', fileName);
   }
 
-  async readFile(fileName: string): Promise<string | undefined> {
+  async readFile(fileName: string): Promise<string> {
     const filePath = this.#getFilePath(fileName);
     try {
       return fs.readFile(filePath, 'utf-8');
     } catch (error) {
         if (error instanceof Error)  
             throw new Error(`Error reading file ${filePath}: ${error.message}`);
+        throw new Error(`Error reading file ${filePath}`);
     }
   }
 }
