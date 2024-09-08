@@ -1,8 +1,8 @@
-import { IProductVariant, QuantityRule, IProductVariantEntity } from './@interfaces/product-variant.interfaces';
+import { IProductVariantData, QuantityRule, IProductVariantEntity } from './@interfaces/product-variant-entity.interfaces';
 
 export default class ProductVariantEntity implements IProductVariantEntity {
   originId: number;
-  productId: number;
+  originProductId: number;
   title: string;
   price: string;
   sku: string;
@@ -53,9 +53,9 @@ export default class ProductVariantEntity implements IProductVariantEntity {
     price_currency,
     compare_at_price_currency,
     quantity_price_breaks,
-  }: IProductVariant) {
+  }: IProductVariantData) {
     this.originId = id;
-    this.productId = product_id;
+    this.originProductId = product_id;
     this.title = title;
     this.price = price;
     this.sku = sku;
@@ -84,7 +84,7 @@ export default class ProductVariantEntity implements IProductVariantEntity {
   getArray(): any[] {
     return [
       this.originId,
-      this.productId,
+      this.originProductId,
       this.title,
       this.price,
       this.sku,

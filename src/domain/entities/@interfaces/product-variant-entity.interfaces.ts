@@ -26,7 +26,7 @@ export interface IProductVariantData {
   quantity_price_breaks: any[];
 }
   
-interface QuantityRule {
+export interface QuantityRule {
   min: number;
   max: number | null;
   increment: number;
@@ -34,7 +34,7 @@ interface QuantityRule {
 
 export interface IProductVariant {
   originId: number;
-  productId: number;
+  originProductId: number;
   title: string;
   price: string;
   sku: string;
