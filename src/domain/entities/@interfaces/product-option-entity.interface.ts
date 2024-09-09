@@ -1,4 +1,5 @@
 export interface IProductOptionData {
+    ref_product_id?: number;
     id: number;
     product_id: number;
     name: string;
@@ -7,6 +8,7 @@ export interface IProductOptionData {
 }
 
 export interface IProductOption {
+    productId: number;
     originId: number;
     originProductId: number;
     name: string;

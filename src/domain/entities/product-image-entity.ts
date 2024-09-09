@@ -1,6 +1,7 @@
 import { IProductImageData, IProductImageEntity } from './@interfaces/product-image-entity.interfaces';
 
 export default class ProductImageEntity implements IProductImageEntity {
+  productId: number;
   originId: number;
   originProductId: number;
   position: number;
@@ -13,6 +14,7 @@ export default class ProductImageEntity implements IProductImageEntity {
   originVariantIds: number[];
 
   constructor({
+    ref_product_id,
     id,
     product_id,
     position,
@@ -24,6 +26,7 @@ export default class ProductImageEntity implements IProductImageEntity {
     src,
     variant_ids,
   }: IProductImageData) {
+    this.productId = ref_product_id;
     this.originId = id;
     this.originProductId = product_id;
     this.position = position;
@@ -38,6 +41,7 @@ export default class ProductImageEntity implements IProductImageEntity {
 
   getArray(): any[] {
     return [
+      this.productId,
       this.originId,
       this.originProductId,
       this.position,

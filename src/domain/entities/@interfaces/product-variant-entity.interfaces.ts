@@ -1,4 +1,5 @@
 export interface IProductVariantData {
+  ref_product_id?: number;
   id: number;
   product_id: number;
   title: string;
@@ -33,6 +34,7 @@ export interface QuantityRule {
 }
 
 export interface IProductVariant {
+  productId: number;
   originId: number;
   originProductId: number;
   title: string;

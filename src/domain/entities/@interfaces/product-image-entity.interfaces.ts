@@ -1,4 +1,5 @@
 export interface IProductImageData {
+  ref_product_id?: number;
   id: number;
   product_id: number;
   position: number;
@@ -12,6 +13,7 @@ export interface IProductImageData {
 }
 
 export interface IProductImage {
+  productId: number;
   originId: number;
   originProductId: number;
   position: number;

@@ -1,6 +1,7 @@
 import { IProductVariantData, QuantityRule, IProductVariantEntity } from './@interfaces/product-variant-entity.interfaces';
 
 export default class ProductVariantEntity implements IProductVariantEntity {
+  productId: number;
   originId: number;
   originProductId: number;
   title: string;
@@ -28,6 +29,7 @@ export default class ProductVariantEntity implements IProductVariantEntity {
   quantityPriceBreaks: any[];
 
   constructor({
+    ref_product_id,
     id,
     product_id,
     title,
@@ -54,6 +56,7 @@ export default class ProductVariantEntity implements IProductVariantEntity {
     compare_at_price_currency,
     quantity_price_breaks,
   }: IProductVariantData) {
+    this.productId = ref_product_id,
     this.originId = id;
     this.originProductId = product_id;
     this.title = title;
@@ -83,6 +86,7 @@ export default class ProductVariantEntity implements IProductVariantEntity {
 
   getArray(): any[] {
     return [
+      this.productId,
       this.originId,
       this.originProductId,
       this.title,
@@ -104,7 +108,9 @@ export default class ProductVariantEntity implements IProductVariantEntity {
       this.weight,
       this.weightUnit,
       this.requiresShipping,
-      this.quantityRule,
+      this.quantityRule.min,
+      this.quantityRule.max,
+      this.quantityRule.increment,
       this.priceCurrency,
       this.compareAtPriceCurrency,
       this.quantityPriceBreaks,
