@@ -1,7 +1,10 @@
-import { IProductImageData, IProductImageEntity } from './@interfaces/product-image-entity.interfaces';
+import {
+  IProductImageData,
+  IProductImageEntity,
+} from "./@interfaces/product-image-entity.interfaces";
 
 export default class ProductImageEntity implements IProductImageEntity {
-  productId: number;
+  productId?: number;
   originId: number;
   originProductId: number;
   position: number;
@@ -39,7 +42,7 @@ export default class ProductImageEntity implements IProductImageEntity {
     this.originVariantIds = variant_ids;
   }
 
-  getArray(): any[] {
+  getArray(): unknown[] {
     return [
       this.productId,
       this.originId,

@@ -1,3 +1,3 @@
 export interface IUpdateProductUseCase {
-    execute: () => Promise<void>;
+  execute: () => Promise<void>;
 }

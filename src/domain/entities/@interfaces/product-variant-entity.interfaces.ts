@@ -24,9 +24,9 @@ export interface IProductVariantData {
   quantity_rule: QuantityRule;
   price_currency: string;
   compare_at_price_currency: string;
-  quantity_price_breaks: any[];
+  quantity_price_breaks: unknown[];
 }
-  
+
 export interface QuantityRule {
   min: number;
   max: number | null;
@@ -34,7 +34,7 @@ export interface QuantityRule {
 }
 
 export interface IProductVariant {
-  productId: number;
+  productId?: number;
   originId: number;
   originProductId: number;
   title: string;
@@ -56,13 +56,12 @@ export interface IProductVariant {
   weight: number;
   weightUnit: string;
   requiresShipping: boolean;
-  quantityRule: QuantityRule;
+  quantityRule?: QuantityRule;
   priceCurrency: string;
   compareAtPriceCurrency: string;
-  quantityPriceBreaks: any[];
+  quantityPriceBreaks?: unknown[];
 }
 
-
 export interface IProductVariantEntity extends IProductVariant {
-  getArray: () => any[];
+  getArray: () => unknown[];
 }

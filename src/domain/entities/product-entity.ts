@@ -1,4 +1,7 @@
-import { IProductData, IProductEntity } from './@interfaces/product-entity.interface';
+import {
+  IProductData,
+  IProductEntity,
+} from "./@interfaces/product-entity.interface";
 
 export default class ProductEntity implements IProductEntity {
   originId: number;
@@ -42,7 +45,7 @@ export default class ProductEntity implements IProductEntity {
     this.tags = tags;
   }
 
-  getArray(): any[] {
+  getArray(): unknown[] {
     return [
       this.originId,
       this.title,

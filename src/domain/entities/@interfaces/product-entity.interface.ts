@@ -16,13 +16,12 @@ export interface IProductData {
   published_scope: string;
   tags: string;
 }
-  
-  
+
 export interface IProductDataComplete {
   product: IProductData & {
-  variants: IProductVariantData[];
-  options: IProductOptionData[];
-  images: IProductImageData[];
+    variants: IProductVariantData[];
+    options: IProductOptionData[];
+    images: IProductImageData[];
   };
 }
 
@@ -42,5 +41,5 @@ export interface IProduct {
 }
 
 export interface IProductEntity extends IProduct {
-  getArray: () => any[];
+  getArray: () => unknown[];
 }

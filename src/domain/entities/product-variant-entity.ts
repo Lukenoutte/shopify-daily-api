@@ -1,7 +1,11 @@
-import { IProductVariantData, QuantityRule, IProductVariantEntity } from './@interfaces/product-variant-entity.interfaces';
+import {
+  IProductVariantData,
+  QuantityRule,
+  IProductVariantEntity,
+} from "./@interfaces/product-variant-entity.interfaces";
 
 export default class ProductVariantEntity implements IProductVariantEntity {
-  productId: number;
+  productId?: number;
   originId: number;
   originProductId: number;
   title: string;
@@ -23,10 +27,10 @@ export default class ProductVariantEntity implements IProductVariantEntity {
   weight: number;
   weightUnit: string;
   requiresShipping: boolean;
-  quantityRule: QuantityRule;
+  quantityRule?: QuantityRule;
   priceCurrency: string;
   compareAtPriceCurrency: string;
-  quantityPriceBreaks: any[];
+  quantityPriceBreaks?: unknown[];
 
   constructor({
     ref_product_id,
@@ -56,7 +60,7 @@ export default class ProductVariantEntity implements IProductVariantEntity {
     compare_at_price_currency,
     quantity_price_breaks,
   }: IProductVariantData) {
-    this.productId = ref_product_id,
+    this.productId = ref_product_id;
     this.originId = id;
     this.originProductId = product_id;
     this.title = title;
@@ -84,7 +88,7 @@ export default class ProductVariantEntity implements IProductVariantEntity {
     this.quantityPriceBreaks = quantity_price_breaks;
   }
 
-  getArray(): any[] {
+  getArray(): unknown[] {
     return [
       this.productId,
       this.originId,
@@ -108,12 +112,12 @@ export default class ProductVariantEntity implements IProductVariantEntity {
       this.weight,
       this.weightUnit,
       this.requiresShipping,
-      this.quantityRule.min,
-      this.quantityRule.max,
-      this.quantityRule.increment,
+      this.quantityRule?.min || null,
+      this.quantityRule?.max || null,
+      this.quantityRule?.increment || null,
       this.priceCurrency,
       this.compareAtPriceCurrency,
-      this.quantityPriceBreaks,
+      this.quantityPriceBreaks || null,
     ];
   }
 }

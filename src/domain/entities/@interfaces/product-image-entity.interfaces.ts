@@ -13,7 +13,7 @@ export interface IProductImageData {
 }
 
 export interface IProductImage {
-  productId: number;
+  productId?: number;
   originId: number;
   originProductId: number;
   position: number;
@@ -27,5 +27,5 @@ export interface IProductImage {
 }
 
 export interface IProductImageEntity extends IProductImage {
-  getArray: () => any[];
+  getArray: () => unknown[];
 }

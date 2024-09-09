@@ -1,5 +1,5 @@
-import { Response, Request } from 'express';
-import { IRouter } from 'presentation/routers/@interfaces/router.interfaces';
+import { Response, Request } from "express";
+import { IRouter } from "presentation/routers/@interfaces/router.interfaces";
 
 type adapterResponse = (req: Request, res: Response) => Promise<void>;
 

@@ -1,7 +1,10 @@
-import { IProductOptionData, IProductOptionEntity } from './@interfaces/product-option-entity.interface';
+import {
+  IProductOptionData,
+  IProductOptionEntity,
+} from "./@interfaces/product-option-entity.interface";
 
 export default class ProductOptionDataEntity implements IProductOptionEntity {
-  productId: number;
+  productId?: number;
   originId: number;
   originProductId: number;
   name: string;
@@ -16,7 +19,7 @@ export default class ProductOptionDataEntity implements IProductOptionEntity {
     position,
     values,
   }: IProductOptionData) {
-    this.productId = ref_product_id,
+    this.productId = ref_product_id;
     this.originId = id;
     this.originProductId = product_id;
     this.name = name;
@@ -24,7 +27,7 @@ export default class ProductOptionDataEntity implements IProductOptionEntity {
     this.values = values;
   }
 
-  getArray(): any[] {
+  getArray(): unknown[] {
     return [
       this.productId,
       this.originId,

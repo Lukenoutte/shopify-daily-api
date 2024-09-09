@@ -7,21 +7,21 @@ import InsertProductRepository from "infra/repositories/insert-product-repositor
 import InsertProductVariantRepository from "infra/repositories/insert-product-variants-repository";
 
 export default class UpdateProductComposer {
-    compose() {
-        const axiosHelper = new AxiosHelper()
-        const insertProductRepository = new InsertProductRepository()
-        const insertProductImageRespository = new InsertProductImageRepository()
-        const insertProductOptionRepository = new InsertProductOptionRepository()
-        const insertProductVariantRepository = new InsertProductVariantRepository()
-        const fileReaderHelper = new FileReaderHelper()
-        const updateProductUseCase = new UpdateProductUseCase({
-            axiosHelper,
-            fileReaderHelper,
-            insertProductRepository,
-            insertProductImageRespository,
-            insertProductOptionRepository,
-            insertProductVariantRepository
-        })
-        updateProductUseCase.execute()
-    }
+  compose() {
+    const axiosHelper = new AxiosHelper();
+    const insertProductRepository = new InsertProductRepository();
+    const insertProductImageRespository = new InsertProductImageRepository();
+    const insertProductOptionRepository = new InsertProductOptionRepository();
+    const insertProductVariantRepository = new InsertProductVariantRepository();
+    const fileReaderHelper = new FileReaderHelper();
+    const updateProductUseCase = new UpdateProductUseCase({
+      axiosHelper,
+      fileReaderHelper,
+      insertProductRepository,
+      insertProductImageRespository,
+      insertProductOptionRepository,
+      insertProductVariantRepository,
+    });
+    updateProductUseCase.execute();
+  }
 }

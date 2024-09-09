@@ -4,17 +4,17 @@ import { IProductOptionEntity } from "domain/entities/@interfaces/product-option
 import { IProductVariantEntity } from "domain/entities/@interfaces/product-variant-entity.interfaces";
 
 export interface IInsertProductRepository {
-    execute: (productEntity: IProductEntity) => Promise<number>;
+  execute: (productEntity: IProductEntity) => Promise<number | undefined>;
 }
 
 export interface IInsertProductImageRepository {
-    execute: (productImageEntity: IProductImageEntity) => Promise<void>;
+  execute: (productImageEntity: IProductImageEntity) => Promise<void>;
 }
 
 export interface IInsertProductOptionRepository {
-    execute: (productImageEntity: IProductOptionEntity) => Promise<void>;
+  execute: (productImageEntity: IProductOptionEntity) => Promise<void>;
 }
 
 export interface IInsertProductVariantRepository {
-    execute: (productVariants: IProductVariantEntity) => Promise<void>;
+  execute: (productVariants: IProductVariantEntity) => Promise<void>;
 }
