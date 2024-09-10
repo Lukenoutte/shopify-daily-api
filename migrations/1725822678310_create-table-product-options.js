@@ -27,11 +27,9 @@ exports.up = (pgm) => {
     },
     position: {
       type: "integer",
-      notNull: true,
     },
     values: {
       type: "text[]",
-      notNull: true,
     },
     created_at: {
       type: "timestamp",
@@ -44,7 +42,7 @@ exports.up = (pgm) => {
   });
 
   pgm.addConstraint("product_options", "unique_id_product_options", {
-    unique: ["origin_id", "origin_product_id"],
+    unique: ["product_id", "origin_id"],
   });
 };
 

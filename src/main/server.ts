@@ -2,7 +2,7 @@ import PostgreHelper from "../infra/helpers/postgre-helper";
 import app from "./configs/app";
 import { serverPort, postgreUrl } from "./configs/env";
 import { CronJobHelper } from "../infra/helpers/cron-job-helper";
-import UpdateProductComposer from "./composers/update-product-composer";
+import UpdateProductsComposer from "./composers/update-products-composer";
 
 async function execute() {
   try {
@@ -12,11 +12,10 @@ async function execute() {
     });
 
     const cronJobHelper = new CronJobHelper();
-    const updateProductComposer = new UpdateProductComposer();
     const everyDayCronExpression = "* * * * *";
     cronJobHelper.startCronJob(
       everyDayCronExpression,
-      updateProductComposer.compose,
+      UpdateProductsComposer.compose,
       "Update Product",
     );
   } catch (error) {

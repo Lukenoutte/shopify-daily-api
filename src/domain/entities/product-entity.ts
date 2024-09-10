@@ -1,9 +1,14 @@
 import {
-  IProductData,
+  IProductSnakeCase,
   IProductEntity,
+  IProductResponse,
 } from "./@interfaces/product-entity.interface";
+import { IProductImage } from "./@interfaces/product-image-entity.interfaces";
+import { IProductOption } from "./@interfaces/product-option-entity.interface";
+import { IProductVariant } from "./@interfaces/product-variant-entity.interfaces";
 
 export default class ProductEntity implements IProductEntity {
+  id: number;
   originId: number;
   title: string;
   bodyHtml: string;
@@ -16,33 +21,50 @@ export default class ProductEntity implements IProductEntity {
   templateSuffix: string;
   publishedScope: string;
   tags: string;
+  images: IProductImage[];
+  options: IProductOption[];
+  variants: IProductVariant[];
+  createdAt: string;
+  updatedAt: string;
 
   constructor({
     id,
+    origin_id,
     title,
     body_html,
     vendor,
     product_type,
-    created_at,
     handle,
-    updated_at,
+    origin_created_at,
+    origin_updated_at,
     published_at,
     template_suffix,
     published_scope,
     tags,
-  }: IProductData) {
-    this.originId = id;
+    created_at,
+    updated_at,
+    images,
+    options,
+    variants,
+  }: IProductSnakeCase) {
+    this.id = id;
+    this.originId = origin_id;
     this.title = title;
     this.bodyHtml = body_html;
     this.vendor = vendor;
     this.productType = product_type;
-    this.originCreatedAt = created_at;
     this.handle = handle;
-    this.originUpdatedAt = updated_at;
+    this.originCreatedAt = origin_created_at;
+    this.originUpdatedAt = origin_updated_at;
     this.publishedAt = published_at;
     this.templateSuffix = template_suffix;
     this.publishedScope = published_scope;
     this.tags = tags;
+    this.createdAt = created_at;
+    this.updatedAt = updated_at;
+    this.images = images;
+    this.options = options;
+    this.variants = variants;
   }
 
   getArray(): unknown[] {
@@ -52,13 +74,36 @@ export default class ProductEntity implements IProductEntity {
       this.bodyHtml,
       this.vendor,
       this.productType,
-      this.originCreatedAt,
       this.handle,
+      this.originCreatedAt,
       this.originUpdatedAt,
       this.publishedAt,
       this.templateSuffix,
       this.publishedScope,
       this.tags,
     ];
+  }
+
+  getObject(): IProductResponse {
+    return {
+      id: this.id,
+      originId: this.originId,
+      title: this.title,
+      bodyHtml: this.bodyHtml,
+      vendor: this.vendor,
+      productType: this.productType,
+      handle: this.handle,
+      originCreatedAt: this.originCreatedAt,
+      originUpdatedAt: this.originUpdatedAt,
+      publishedAt: this.publishedAt,
+      templateSuffix: this.templateSuffix,
+      publishedScope: this.publishedScope,
+      tags: this.tags,
+      images: this.images,
+      options: this.options,
+      variants: this.variants,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+    };
   }
 }

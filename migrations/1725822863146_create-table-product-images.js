@@ -23,35 +23,27 @@ exports.up = (pgm) => {
     },
     position: {
       type: "integer",
-      notNull: true,
     },
     origin_created_at: {
       type: "timestamp",
-      notNull: true,
     },
     origin_updated_at: {
       type: "timestamp",
-      notNull: true,
     },
     alt: {
       type: "varchar(255)",
-      notNull: false,
     },
     width: {
       type: "integer",
-      notNull: true,
     },
     height: {
       type: "integer",
-      notNull: true,
     },
     src: {
       type: "varchar(255)",
-      notNull: true,
     },
     origin_variant_ids: {
       type: "bigint[]",
-      notNull: true,
     },
     created_at: {
       type: "timestamp",
@@ -64,7 +56,7 @@ exports.up = (pgm) => {
   });
 
   pgm.addConstraint("product_images", "unique_id_product_images", {
-    unique: ["origin_id", "origin_product_id"],
+    unique: ["product_id", "origin_id"],
   });
 };
 

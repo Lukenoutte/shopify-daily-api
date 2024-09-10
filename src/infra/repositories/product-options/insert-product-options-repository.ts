@@ -1,9 +1,9 @@
 import PostgreHelper from "infra/helpers/postgre-helper";
-import { IInsertProductOptionRepository } from "./@interfaces/repositories.iterfaces";
 import { IProductOptionEntity } from "domain/entities/@interfaces/product-option-entity.interface";
+import { IInsertProductOptionsRepository } from "../@interfaces/repositories.iterfaces";
 
-export default class InsertProductOptionRepository
-  implements IInsertProductOptionRepository
+export default class InsertProductOptionsRepository
+  implements IInsertProductOptionsRepository
 {
   async execute(productOptionEntity: IProductOptionEntity) {
     try {
@@ -13,10 +13,8 @@ export default class InsertProductOptionRepository
             (product_id, origin_id, origin_product_id, name, position, values)
           VALUES
             ($1, $2, $3, $4, $5, $6)
-          ON CONFLICT (origin_id, origin_product_id)
+          ON CONFLICT (product_id, origin_id)
           DO UPDATE SET
-            product_id = EXCLUDED.product_id,
-            origin_product_id = EXCLUDED.origin_product_id,
             name = EXCLUDED.name,
             position = EXCLUDED.position,
             values = EXCLUDED.values,

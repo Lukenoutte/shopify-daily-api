@@ -1,7 +1,8 @@
-export interface IProductVariantData {
-  ref_product_id?: number;
-  id: number;
+export interface IProductVariantSnakeCase {
   product_id: number;
+  id: number;
+  origin_id: number;
+  origin_product_id: number;
   title: string;
   price: string;
   sku: string;
@@ -12,8 +13,8 @@ export interface IProductVariantData {
   option1: string;
   option2: string | null;
   option3: string | null;
-  created_at: string;
-  updated_at: string;
+  origin_created_at: string;
+  origin_updated_at: string;
   taxable: boolean;
   barcode: string;
   grams: number;
@@ -25,6 +26,8 @@ export interface IProductVariantData {
   price_currency: string;
   compare_at_price_currency: string;
   quantity_price_breaks: unknown[];
+  created_at: string;
+  updated_at: string;
 }
 
 export interface QuantityRule {
@@ -34,9 +37,10 @@ export interface QuantityRule {
 }
 
 export interface IProductVariant {
-  productId?: number;
+  id: number;
+  productId: number;
   originId: number;
-  originProductId: number;
+  originProductId?: number;
   title: string;
   price: string;
   sku: string;
@@ -56,10 +60,12 @@ export interface IProductVariant {
   weight: number;
   weightUnit: string;
   requiresShipping: boolean;
-  quantityRule?: QuantityRule;
+  quantityRule: QuantityRule;
   priceCurrency: string;
   compareAtPriceCurrency: string;
-  quantityPriceBreaks?: unknown[];
+  quantityPriceBreaks: unknown[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IProductVariantEntity extends IProductVariant {

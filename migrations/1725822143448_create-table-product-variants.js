@@ -30,12 +30,10 @@ exports.up = (pgm) => {
       notNull: true,
     },
     sku: {
-      type: "varchar(50)",
-      notNull: true,
+      type: "varchar(255)",
     },
     position: {
       type: "integer",
-      notNull: true,
     },
     compare_at_price: {
       type: "varchar(50)",
@@ -48,7 +46,6 @@ exports.up = (pgm) => {
     },
     option1: {
       type: "varchar(255)",
-      notNull: true,
     },
     option2: {
       type: "varchar(255)",
@@ -58,37 +55,30 @@ exports.up = (pgm) => {
     },
     origin_created_at: {
       type: "timestamp",
-      notNull: true,
     },
     origin_updated_at: {
       type: "timestamp",
-      notNull: true,
     },
     taxable: {
       type: "boolean",
-      notNull: true,
     },
     barcode: {
       type: "varchar(255)",
     },
     grams: {
       type: "integer",
-      notNull: true,
     },
     image_id: {
       type: "bigint",
     },
     weight: {
       type: "numeric",
-      notNull: true,
     },
     weight_unit: {
       type: "varchar(10)",
-      notNull: true,
     },
     requires_shipping: {
       type: "boolean",
-      notNull: true,
     },
     quantity_rule_min: {
       type: "integer",
@@ -101,7 +91,6 @@ exports.up = (pgm) => {
     },
     price_currency: {
       type: "varchar(10)",
-      notNull: true,
     },
     compare_at_price_currency: {
       type: "varchar(10)",
@@ -120,7 +109,7 @@ exports.up = (pgm) => {
   });
 
   pgm.addConstraint("product_variants", "unique_id_product_variants", {
-    unique: ["origin_id", "origin_product_id"],
+    unique: ["product_id", "origin_id"],
   });
 };
 

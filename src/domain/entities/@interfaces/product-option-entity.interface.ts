@@ -1,19 +1,25 @@
-export interface IProductOptionData {
-  ref_product_id?: number;
-  id: number;
+export interface IProductOptionSnakeCase {
   product_id: number;
+  id: number;
+  origin_id: number;
+  origin_product_id: number;
   name: string;
   position: number;
   values: string[];
+  created_at: string;
+  updated_at: string;
 }
 
 export interface IProductOption {
-  productId?: number;
+  id: number;
+  productId: number;
   originId: number;
-  originProductId: number;
+  originProductId?: number;
   name: string;
   position: number;
   values: string[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IProductOptionEntity extends IProductOption {

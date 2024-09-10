@@ -1,13 +1,14 @@
 import {
-  IProductVariantData,
+  IProductVariantSnakeCase,
   QuantityRule,
   IProductVariantEntity,
 } from "./@interfaces/product-variant-entity.interfaces";
 
 export default class ProductVariantEntity implements IProductVariantEntity {
-  productId?: number;
+  id: number;
+  productId: number;
   originId: number;
-  originProductId: number;
+  originProductId?: number;
   title: string;
   price: string;
   sku: string;
@@ -27,15 +28,18 @@ export default class ProductVariantEntity implements IProductVariantEntity {
   weight: number;
   weightUnit: string;
   requiresShipping: boolean;
-  quantityRule?: QuantityRule;
+  quantityRule: QuantityRule;
   priceCurrency: string;
   compareAtPriceCurrency: string;
-  quantityPriceBreaks?: unknown[];
+  quantityPriceBreaks: unknown[];
+  createdAt: string;
+  updatedAt: string;
 
   constructor({
-    ref_product_id,
-    id,
     product_id,
+    id,
+    origin_id,
+    origin_product_id,
     title,
     price,
     sku,
@@ -46,8 +50,8 @@ export default class ProductVariantEntity implements IProductVariantEntity {
     option1,
     option2,
     option3,
-    created_at,
-    updated_at,
+    origin_created_at,
+    origin_updated_at,
     taxable,
     barcode,
     grams,
@@ -59,10 +63,13 @@ export default class ProductVariantEntity implements IProductVariantEntity {
     price_currency,
     compare_at_price_currency,
     quantity_price_breaks,
-  }: IProductVariantData) {
-    this.productId = ref_product_id;
-    this.originId = id;
-    this.originProductId = product_id;
+    created_at,
+    updated_at,
+  }: IProductVariantSnakeCase) {
+    this.id = id;
+    this.productId = product_id;
+    this.originId = origin_id;
+    this.originProductId = origin_product_id;
     this.title = title;
     this.price = price;
     this.sku = sku;
@@ -73,8 +80,8 @@ export default class ProductVariantEntity implements IProductVariantEntity {
     this.option1 = option1;
     this.option2 = option2;
     this.option3 = option3;
-    this.originCreatedAt = created_at;
-    this.originUpdatedAt = updated_at;
+    this.originCreatedAt = origin_created_at;
+    this.originUpdatedAt = origin_updated_at;
     this.taxable = taxable;
     this.barcode = barcode;
     this.grams = grams;
@@ -86,6 +93,8 @@ export default class ProductVariantEntity implements IProductVariantEntity {
     this.priceCurrency = price_currency;
     this.compareAtPriceCurrency = compare_at_price_currency;
     this.quantityPriceBreaks = quantity_price_breaks;
+    this.createdAt = created_at;
+    this.updatedAt = updated_at;
   }
 
   getArray(): unknown[] {
@@ -119,5 +128,39 @@ export default class ProductVariantEntity implements IProductVariantEntity {
       this.compareAtPriceCurrency,
       this.quantityPriceBreaks || null,
     ];
+  }
+
+  getObject() {
+    return {
+      id: this.id,
+      productId: this.productId,
+      originId: this.originId,
+      originProductId: this.originProductId,
+      title: this.title,
+      price: this.price,
+      sku: this.sku,
+      position: this.position,
+      compareAtPrice: this.compareAtPrice,
+      fulfillmentService: this.fulfillmentService,
+      inventoryManagement: this.inventoryManagement,
+      option1: this.option1,
+      option2: this.option2,
+      option3: this.option3,
+      originCreatedAt: this.originCreatedAt,
+      originUpdatedAt: this.originUpdatedAt,
+      taxable: this.taxable,
+      barcode: this.barcode,
+      grams: this.grams,
+      imageId: this.imageId,
+      weight: this.weight,
+      weightUnit: this.weightUnit,
+      requiresShipping: this.requiresShipping,
+      quantityRule: this.quantityRule,
+      priceCurrency: this.priceCurrency,
+      compareAtPriceCurrency: this.compareAtPriceCurrency,
+      quantityPriceBreaks: this.quantityPriceBreaks,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+    };
   }
 }

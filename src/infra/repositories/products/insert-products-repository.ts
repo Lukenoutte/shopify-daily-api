@@ -1,9 +1,9 @@
 import PostgreHelper from "infra/helpers/postgre-helper";
-import { IInsertProductRepository } from "./@interfaces/repositories.iterfaces";
+import { IInsertProductsRepository } from "../@interfaces/repositories.iterfaces";
 import { IProductEntity } from "domain/entities/@interfaces/product-entity.interface";
 
-export default class InsertProductRepository
-  implements IInsertProductRepository
+export default class InsertProductsRepository
+  implements IInsertProductsRepository
 {
   async execute(productEntity: IProductEntity): Promise<number | undefined> {
     try {
@@ -11,7 +11,7 @@ export default class InsertProductRepository
         `
           INSERT INTO products (
               origin_id, title, body_html, vendor, product_type, 
-              origin_created_at, handle, origin_updated_at, 
+              handle, origin_created_at, origin_updated_at, 
               published_at, template_suffix, published_scope, tags
           ) 
           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
@@ -22,7 +22,6 @@ export default class InsertProductRepository
               vendor = EXCLUDED.vendor,
               product_type = EXCLUDED.product_type,
               origin_created_at = EXCLUDED.origin_created_at,
-              handle = EXCLUDED.handle,
               origin_updated_at = EXCLUDED.origin_updated_at,
               published_at = EXCLUDED.published_at,
               template_suffix = EXCLUDED.template_suffix,

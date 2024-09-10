@@ -1,10 +1,11 @@
 import {
-  IProductImageData,
+  IProductImageSnakeCase,
   IProductImageEntity,
 } from "./@interfaces/product-image-entity.interfaces";
 
 export default class ProductImageEntity implements IProductImageEntity {
-  productId?: number;
+  id: number;
+  productId: number;
   originId: number;
   originProductId: number;
   position: number;
@@ -15,31 +16,39 @@ export default class ProductImageEntity implements IProductImageEntity {
   height: number;
   src: string;
   originVariantIds: number[];
+  createdAt: string;
+  updatedAt: string;
 
   constructor({
-    ref_product_id,
     id,
     product_id,
+    origin_id,
+    origin_product_id,
     position,
-    created_at,
-    updated_at,
+    origin_created_at,
+    origin_updated_at,
     alt,
     width,
     height,
     src,
-    variant_ids,
-  }: IProductImageData) {
-    this.productId = ref_product_id;
-    this.originId = id;
-    this.originProductId = product_id;
+    origin_variant_ids,
+    created_at,
+    updated_at,
+  }: IProductImageSnakeCase) {
+    this.id = id;
+    this.productId = product_id;
+    this.originId = origin_id;
+    this.originProductId = origin_product_id;
     this.position = position;
-    this.originCreatedAt = created_at;
-    this.originUpdatedAt = updated_at;
+    this.originCreatedAt = origin_created_at;
+    this.originUpdatedAt = origin_updated_at;
     this.alt = alt;
     this.width = width;
     this.height = height;
     this.src = src;
-    this.originVariantIds = variant_ids;
+    this.originVariantIds = origin_variant_ids;
+    this.createdAt = created_at;
+    this.updatedAt = updated_at;
   }
 
   getArray(): unknown[] {
@@ -56,5 +65,24 @@ export default class ProductImageEntity implements IProductImageEntity {
       this.src,
       this.originVariantIds,
     ];
+  }
+
+  getObject() {
+    return {
+      id: this.id,
+      productId: this.productId,
+      originId: this.originId,
+      originProductId: this.originProductId,
+      position: this.position,
+      originCreatedAt: this.originCreatedAt,
+      originUpdatedAt: this.originUpdatedAt,
+      alt: this.alt,
+      width: this.width,
+      height: this.height,
+      src: this.src,
+      originVariantIds: this.originVariantIds,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+    };
   }
 }
