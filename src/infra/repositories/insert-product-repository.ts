@@ -15,7 +15,7 @@ export default class InsertProductRepository
               published_at, template_suffix, published_scope, tags
           ) 
           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
-          ON CONFLICT (origin_id) 
+          ON CONFLICT (origin_id, handle) 
           DO UPDATE SET
               title = EXCLUDED.title,
               body_html = EXCLUDED.body_html,

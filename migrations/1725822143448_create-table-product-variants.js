@@ -118,6 +118,10 @@ exports.up = (pgm) => {
       default: pgm.func("current_timestamp"),
     },
   });
+
+  pgm.addConstraint("product_variants", "unique_id_product_variants", {
+    unique: ["origin_id", "origin_product_id"],
+  });
 };
 
 /**

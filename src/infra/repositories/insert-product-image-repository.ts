@@ -13,7 +13,7 @@ export default class InsertProductImageRepository
             (product_id, origin_id, origin_product_id, position, origin_created_at, origin_updated_at, alt, width, height, src, origin_variant_ids)
           VALUES
             ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
-          ON CONFLICT (origin_id)
+          ON CONFLICT (origin_id, origin_product_id)
           DO UPDATE SET
             product_id = EXCLUDED.product_id,
             position = EXCLUDED.position,

@@ -22,7 +22,7 @@ export default class InsertProductVariantRepository
                 $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20,
                 $21, $22, $23, $24, $25, $26, $27, $28
               )
-            ON CONFLICT (origin_id)
+            ON CONFLICT (origin_id, origin_product_id)
             DO UPDATE SET
               product_id = EXCLUDED.product_id,
               origin_product_id = EXCLUDED.origin_product_id,

@@ -13,7 +13,7 @@ export default class InsertProductOptionRepository
             (product_id, origin_id, origin_product_id, name, position, values)
           VALUES
             ($1, $2, $3, $4, $5, $6)
-          ON CONFLICT (origin_id)
+          ON CONFLICT (origin_id, origin_product_id)
           DO UPDATE SET
             product_id = EXCLUDED.product_id,
             origin_product_id = EXCLUDED.origin_product_id,

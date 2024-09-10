@@ -30,6 +30,10 @@ exports.up = (pgm) => {
       default: pgm.func("CURRENT_TIMESTAMP"),
     },
   });
+
+  pgm.addConstraint("products", "unique_id_products", {
+    unique: ["origin_id", "handle"],
+  });
 };
 
 /**
