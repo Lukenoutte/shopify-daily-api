@@ -4,6 +4,7 @@ import ProductVariantEntity from "domain/entities/product-variant-entity";
 import ProductOptionEntity from "domain/entities/product-option-entity";
 import { IGetProductsUseCase } from "./@interfaces/usecases.interfaces";
 import {
+  ICountProductsRepository,
   ISelectProductImagesByProductIdRepository,
   ISelectProductOptionsByProductIdRepository,
   ISelectProductsRepository,
@@ -16,34 +17,48 @@ export default class GetProductsUseCase implements IGetProductsUseCase {
   selectProductImagesRepository: ISelectProductImagesByProductIdRepository;
   selectProductOptionsRepository: ISelectProductOptionsByProductIdRepository;
   selectProductVariantsRepository: ISelectProductVariantsByProductIdRepository;
+  countProductsRepository: ICountProductsRepository;
 
   constructor({
     selectProductsRepository,
     selectProductImagesRepository,
     selectProductOptionsRepository,
     selectProductVariantsRepository,
+    countProductsRepository,
   }: IGetProductsConstructor) {
     this.selectProductsRepository = selectProductsRepository;
     this.selectProductImagesRepository = selectProductImagesRepository;
     this.selectProductOptionsRepository = selectProductOptionsRepository;
     this.selectProductVariantsRepository = selectProductVariantsRepository;
+    this.countProductsRepository = countProductsRepository;
   }
 
   async execute({
     fullTextSearch,
-    limit,
-    offset,
+    limit = 7,
+    offset = 0,
+    priceMin,
+    priceMax,
   }: {
     fullTextSearch?: string;
     limit?: number;
     offset?: number;
-  }): Promise<IProductResponse[]> {
+    priceMin?: number;
+    priceMax?: number;
+  }): Promise<{
+    data: IProductResponse[];
+    limit: number;
+    offset: number;
+    count?: number;
+  }> {
     const products = await this.selectProductsRepository.execute({
       fullTextSearch,
       limit,
       offset,
+      priceMin,
+      priceMax,
     });
-    if (!products) return [];
+    if (!products) return { data: [], limit, offset };
 
     const productResponse = await Promise.all(
       products.map(async (productData) => {
@@ -68,7 +83,9 @@ export default class GetProductsUseCase implements IGetProductsUseCase {
       }),
     );
 
-    return productResponse;
+    const count = await this.countProductsRepository.execute();
+
+    return { data: productResponse, limit, offset, count: count ?? 0 };
   }
 
   async getAdicionalData(productId: number) {
@@ -87,4 +104,5 @@ interface IGetProductsConstructor {
   selectProductImagesRepository: ISelectProductImagesByProductIdRepository;
   selectProductOptionsRepository: ISelectProductOptionsByProductIdRepository;
   selectProductVariantsRepository: ISelectProductVariantsByProductIdRepository;
+  countProductsRepository: ICountProductsRepository;
 }

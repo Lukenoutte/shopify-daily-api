@@ -2,6 +2,7 @@ import GetProductsUseCase from "domain/usecases/get-products-usercase";
 import SelectProductImagesByProductIdRepository from "infra/repositories/product-images/select-product-images-by-product-id";
 import SelectProductOptionsByProductIdRepository from "infra/repositories/product-options/select-product-options-by-product-id";
 import SelectProductVariantsByProductIdRepository from "infra/repositories/product-variants/select-product-variants-by-product-id";
+import CountProductsRepository from "infra/repositories/products/count-products-repository";
 import SelectProductsRepository from "infra/repositories/products/select-products-repository";
 import GetProductsRouter from "presentation/routers/get-products-router";
 
@@ -15,6 +16,7 @@ export default class GetProductsComposer {
         new SelectProductOptionsByProductIdRepository(),
       selectProductVariantsRepository:
         new SelectProductVariantsByProductIdRepository(),
+      countProductsRepository: new CountProductsRepository(),
     });
     return new GetProductsRouter({ getProductsUseCase });
   }

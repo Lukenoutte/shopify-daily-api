@@ -9,9 +9,13 @@ export interface IGetProductsUseCase {
     fullTextSearch,
     limit,
     offset,
+    priceMin,
+    priceMax,
   }: {
     fullTextSearch?: string;
     limit?: number;
     offset?: number;
-  }) => Promise<IProductResponse[]>;
+    priceMin?: number;
+    priceMax?: number;
+  }) => Promise<{ data: IProductResponse[]; limit: number; offset: number }>;
 }

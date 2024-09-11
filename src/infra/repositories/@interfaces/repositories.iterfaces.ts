@@ -36,10 +36,14 @@ export interface ISelectProductsRepository {
     fullTextSearch,
     limit,
     offset,
+    priceMin,
+    priceMax,
   }: {
     fullTextSearch?: string;
-    limit?: number;
-    offset?: number;
+    limit: number;
+    offset: number;
+    priceMin?: number;
+    priceMax?: number;
   }) => Promise<IProductSnakeCase[] | undefined>;
 }
 
@@ -57,4 +61,8 @@ export interface ISelectProductVariantsByProductIdRepository {
   execute: (
     productId: number,
   ) => Promise<IProductVariantSnakeCase[] | undefined>;
+}
+
+export interface ICountProductsRepository {
+  execute: () => Promise<number | undefined>;
 }

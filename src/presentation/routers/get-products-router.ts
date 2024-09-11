@@ -20,12 +20,16 @@ export default class GetProductsRouter implements IRouter {
     fullTextSearch?: string;
     limit?: number;
     offset?: number;
+    priceMin?: number;
+    priceMax?: number;
   }): Promise<{ isValid: boolean; error: object }> {
     try {
       const storeSchema = object({
         fullTextSearch: string().optional(),
         limit: number().optional(),
         offset: number().optional(),
+        priceMin: number().optional(),
+        priceMax: number().optional(),
       });
       await storeSchema.validate(params);
       return { isValid: true, error: {} };
@@ -48,11 +52,13 @@ export default class GetProductsRouter implements IRouter {
     try {
       if (!httpRequest || !httpRequest.query)
         throw new Error("Invalid Request");
-      const { fts, limit, offset } = httpRequest.query;
+      const { fts, limit, offset, priceMin, priceMax } = httpRequest.query;
       const query = {
         fullTextSearch: fts ? (fts as string) : undefined,
         limit: limit ? parseInt(limit as string, 10) : undefined,
         offset: offset ? parseInt(offset as string, 10) : undefined,
+        priceMin: priceMin ? parseInt(priceMin as string, 10) : undefined,
+        priceMax: priceMax ? parseInt(priceMax as string, 10) : undefined,
       };
       const { isValid, error } = await this.validate(query);
       if (!isValid) return HttpResponse.badRequest(error);
