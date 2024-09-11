@@ -6,8 +6,14 @@ import {
   IProductImageSnakeCase,
   IProductImageEntity,
 } from "domain/entities/@interfaces/product-image-entity.interfaces";
-import { IProductOptionSnakeCase, IProductOptionEntity } from "domain/entities/@interfaces/product-option-entity.interface";
-import { IProductVariantSnakeCase, IProductVariantEntity } from "domain/entities/@interfaces/product-variant-entity.interfaces";
+import {
+  IProductOptionSnakeCase,
+  IProductOptionEntity,
+} from "domain/entities/@interfaces/product-option-entity.interface";
+import {
+  IProductVariantSnakeCase,
+  IProductVariantEntity,
+} from "domain/entities/@interfaces/product-variant-entity.interfaces";
 
 export interface IInsertProductsRepository {
   execute: (productEntity: IProductEntity) => Promise<number | undefined>;
@@ -26,7 +32,15 @@ export interface IInsertProductVariantsRepository {
 }
 
 export interface ISelectProductsRepository {
-  execute: () => Promise<IProductSnakeCase[] | undefined>;
+  execute: ({
+    fullTextSearch,
+    limit,
+    offset,
+  }: {
+    fullTextSearch?: string;
+    limit?: number;
+    offset?: number;
+  }) => Promise<IProductSnakeCase[] | undefined>;
 }
 
 export interface ISelectProductImagesByProductIdRepository {
@@ -34,9 +48,13 @@ export interface ISelectProductImagesByProductIdRepository {
 }
 
 export interface ISelectProductOptionsByProductIdRepository {
-  execute: (productId: number) => Promise<IProductOptionSnakeCase[] | undefined>;
+  execute: (
+    productId: number,
+  ) => Promise<IProductOptionSnakeCase[] | undefined>;
 }
 
 export interface ISelectProductVariantsByProductIdRepository {
-  execute: (productId: number) => Promise<IProductVariantSnakeCase[] | undefined>;
+  execute: (
+    productId: number,
+  ) => Promise<IProductVariantSnakeCase[] | undefined>;
 }

@@ -29,24 +29,27 @@ export default class GetProductsUseCase implements IGetProductsUseCase {
     this.selectProductVariantsRepository = selectProductVariantsRepository;
   }
 
-  async execute(): Promise<IProductResponse[]> {
-    const products = await this.selectProductsRepository.execute();
+  async execute({
+    fullTextSearch,
+    limit,
+    offset,
+  }: {
+    fullTextSearch?: string;
+    limit?: number;
+    offset?: number;
+  }): Promise<IProductResponse[]> {
+    const products = await this.selectProductsRepository.execute({
+      fullTextSearch,
+      limit,
+      offset,
+    });
     if (!products) return [];
 
     const productResponse = await Promise.all(
       products.map(async (productData) => {
-        let images = await this.selectProductImagesRepository.execute(
+        const { images, variants, options } = await this.getAdicionalData(
           productData.id,
         );
-        let variants = await this.selectProductVariantsRepository.execute(
-          productData.id,
-        );
-        let options = await this.selectProductOptionsRepository.execute(
-          productData.id,
-        );
-        if (!images) images = [];
-        if (!variants) variants = [];
-        if (!options) options = [];
         const productEntity = new ProductEntity(productData);
         const imagesCalmelCase = images.map((imageData) =>
           new ProductImageEntity(imageData).getObject(),
@@ -66,6 +69,16 @@ export default class GetProductsUseCase implements IGetProductsUseCase {
     );
 
     return productResponse;
+  }
+
+  async getAdicionalData(productId: number) {
+    const images =
+      (await this.selectProductImagesRepository.execute(productId)) ?? [];
+    const variants =
+      (await this.selectProductVariantsRepository.execute(productId)) ?? [];
+    const options =
+      (await this.selectProductOptionsRepository.execute(productId)) ?? [];
+    return { images, variants, options };
   }
 }
 
