@@ -83,7 +83,11 @@ export default class GetProductsUseCase implements IGetProductsUseCase {
       }),
     );
 
-    const count = await this.countProductsRepository.execute();
+    const count = await this.countProductsRepository.execute({
+      fullTextSearch,
+      priceMin,
+      priceMax,
+    });
 
     return { data: productResponse, limit, offset, count: count ?? 0 };
   }

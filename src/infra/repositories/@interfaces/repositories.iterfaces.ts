@@ -64,5 +64,13 @@ export interface ISelectProductVariantsByProductIdRepository {
 }
 
 export interface ICountProductsRepository {
-  execute: () => Promise<number | undefined>;
+  execute: ({
+    fullTextSearch,
+    priceMin,
+    priceMax,
+  }: {
+    fullTextSearch?: string;
+    priceMin?: number;
+    priceMax?: number | null;
+  }) => Promise<number | undefined>;
 }
