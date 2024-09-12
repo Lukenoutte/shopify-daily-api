@@ -6,7 +6,7 @@ For testing purposes, you can change the cron job's execution time from daily (0
 
 [**1. Architecture**](docs/architecture.md)
 
-[**2. Routes**](docs/routes/routes.md)
+[**2. Routes**](docs/routes.md)
 
 ## Install and Run
 
