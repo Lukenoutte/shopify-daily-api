@@ -34,10 +34,10 @@ This route queries the "refresh_tokens" table to check if the provided "refreshT
         variants: Variant[];
         images: Image[];
         options: Option[];
-    }[],
-    limit: number,
-    offset: number,
-    count: number
+    }[];
+    limit: number;
+    offset: number;
+    count: number;
     
 }
 

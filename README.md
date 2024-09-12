@@ -8,6 +8,8 @@ For testing purposes, you can change the cron job's execution time from daily (0
 
 [**2. Routes**](docs/routes.md)
 
+[**3. Front-end**](https://github.com/Lukenoutte/shopify-daily-app)
+
 ## Install and Run
 
 **1. Install the dependencies. For this, you will need node ">=20.0.0".**
@@ -16,7 +18,7 @@ For testing purposes, you can change the cron job's execution time from daily (0
 yarn install
 ```
 
-**2. Create a ".env" file following the template of the [".env.example"](.env.exemple) file.**
+**2. Create a ".env" file following the template of the [".env.example"](.env.example) file.**
 
 **3. You'll need a Postgres database; create one and replace the "DATABASE_URL" variable.**
 
