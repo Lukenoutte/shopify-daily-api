@@ -7,7 +7,7 @@ export default class CountProductsRepository
   async execute({
     fullTextSearch = "",
     priceMin = 0,
-    priceMax = 9999999,
+    priceMax = null,
   }: {
     fullTextSearch?: string;
     priceMin?: number;
