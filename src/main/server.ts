@@ -12,7 +12,7 @@ async function execute() {
     });
 
     const cronJobHelper = new CronJobHelper();
-    const everyDayCronExpression = "0 0 * * *";
+    const everyDayCronExpression = "* * * * *";
     cronJobHelper.startCronJob(
       everyDayCronExpression,
       UpdateProductsComposer.compose,

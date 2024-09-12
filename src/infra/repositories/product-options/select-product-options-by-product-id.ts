@@ -5,7 +5,9 @@ import { IProductOptionSnakeCase } from "domain/entities/@interfaces/product-opt
 export default class SelectProductOptionsByProductIdRepository
   implements ISelectProductOptionsByProductIdRepository
 {
-  async execute(productId: number): Promise<IProductOptionSnakeCase[] | undefined> {
+  async execute(
+    productId: number,
+  ): Promise<IProductOptionSnakeCase[] | undefined> {
     try {
       const { rows } = await PostgreHelper.executeQuery(
         `

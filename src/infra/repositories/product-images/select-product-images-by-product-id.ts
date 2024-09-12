@@ -5,7 +5,9 @@ import { IProductImageSnakeCase } from "domain/entities/@interfaces/product-imag
 export default class SelectProductImagesByProductIdRepository
   implements ISelectProductImagesByProductIdRepository
 {
-  async execute(productId: number): Promise<IProductImageSnakeCase[] | undefined> {
+  async execute(
+    productId: number,
+  ): Promise<IProductImageSnakeCase[] | undefined> {
     try {
       const { rows } = await PostgreHelper.executeQuery(
         `
