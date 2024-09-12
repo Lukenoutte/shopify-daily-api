@@ -1,10 +1,12 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { IFileReaderHelper } from "./@interfaces/helper.interfaces";
+import { nodeEnv } from "main/configs/env";
 
 export default class FileReaderHelper implements IFileReaderHelper {
   #getFilePath(fileName: string): string {
-    return path.join(__dirname, "../utils", fileName);
+    const pathUtils = nodeEnv === "dev" ? "../utils" : "../infra/utils";
+    return path.join(__dirname, pathUtils, fileName);
   }
 
   async readFile(fileName: string): Promise<string> {
