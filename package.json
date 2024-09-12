@@ -6,9 +6,9 @@
   "scripts": {
     "lint": "eslint \"src/**/*.ts\"",
     "dev": "nodemon -r tsconfig-paths/register src/main/server.ts",
-    "prepare": "npx ts-patch install -s",
+    "copy-files": "copyfiles -u 1 -f 'src/infra/utils/**/*.*' dist/infra/utils",
     "start": "node dist/main/server.js",
-    "build": "tsup src",
+    "build": "tsup src && yarn copy-files",
     "migrate:up": "node-pg-migrate up",
     "migrate:down": "node-pg-migrate down",
     "migrate:redo": "node-pg-migrate redo",
@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "axios": "^1.7.7",
+    "copyfiles": "^2.4.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
