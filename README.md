@@ -2,7 +2,7 @@
 
 There is a [url.txt](src/infra/utils/urls.txt) file containing all the Shopify site URLs. After reading and accessing all the sites, this API saves the information to a Postgres database and uses a Cron Job to update it once a day.
 
-For testing purposes, you can change the cron job's execution time from daily (0 0 * * *) to every minute (* * * * *) in the [server's initialization file](src/main/server.ts).
+For testing purposes, you can change the cron job's execution time from daily "0 0 * * *" to every minute "* * * * *" in the [server's initialization file](src/main/server.ts).
 
 [**1. Architecture**](docs/architecture.md)
 
